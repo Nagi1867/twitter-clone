@@ -104,6 +104,24 @@ class AppController extends Action {
 
 		header('Location: /quemSeguir');
 	}
+
+	public function excluirTweet() {
+    $this->validaAutenticacao();
+
+    $idTweet = isset($_POST['id']) ? $_POST['id'] : null;
+
+    if ($idTweet) {
+        $tweet = Container::getModel('Tweet');
+        $tweet->__set('id', $idTweet);
+        $tweet->__set('id_usuario', $_SESSION['id']);
+
+        $tweet->excluirTweet();
+    }
+
+    header('Location: /timeline');
+    exit();
+}
+
 }
 
 ?>

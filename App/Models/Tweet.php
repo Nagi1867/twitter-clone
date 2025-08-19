@@ -52,4 +52,12 @@ class Tweet extends Model {
 
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}	
+
+	public function excluirTweet() {
+		$query = 'delete from tweets where id = :id and id_usuario = :id_usuario';
+		$stmt = $this->db->prepare($query);
+		$stmt->bindValue(':id', $this->__get('id'));
+		$stmt->bindValue(':id_usuario', $this->__get('id_usuario'));
+		$stmt->execute();
+	}
 }
