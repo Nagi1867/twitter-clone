@@ -88,6 +88,7 @@ class AppController extends Action {
 
 		header('Location: /quemSeguir');
 	}
+
 }
 
 ?>
