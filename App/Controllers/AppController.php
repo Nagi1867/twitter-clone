@@ -51,6 +51,11 @@ class AppController extends Action {
 		}	
 
 	}
+
+	public function quemSeguir() {
+		$this->validaAutenticacao();
+		$this->render('quemSeguir');
+	}
 }
 
 ?>
