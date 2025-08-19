@@ -27,7 +27,7 @@
 					<input type="text" name="email" class="form-control" placeholder="E-mail">
 				</div>
 				<div class="col">
-					<input type="text" name="senha" class="form-control" placeholder="Senha">
+					<input type="password" name="senha" class="form-control" placeholder="Senha">
 				</div>
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary mb-2">Entrar</button>
@@ -37,7 +37,7 @@
 			<?php if($this->view->login == 'erro') { ?>
 				<div class="row">
 					<div class="col">
-						<span class="text text-danger">*Email e ou senha inválidos</span>
+						<span class="text text-danger">*E-mail e ou senha inválido(s)</span>
 					</div>
 				</div>
 			<?php } ?>

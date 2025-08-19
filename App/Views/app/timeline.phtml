@@ -59,7 +59,7 @@
 			<div class="row mb-2">
 				<div class="col tweetBox">
 					<form method="post" action="/tweet">
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tweet"></textarea>
+						<textarea class="form-control" name="tweet" id="exampleFormControlTextarea1" rows="3"></textarea>
 						
 						<div class="col mt-2 d-flex justify-content-end">
 							<button type="submit" class="btn btn-primary">Tweet</button>
@@ -72,9 +72,8 @@
 			<?php foreach($this->view->tweets as $id_tweet => $tweet) { ?>
 				<div class="row tweet">
 					<div class="col">
-						<p><strong><?= $tweet['nome'] ?></strong> <small><span class="text text-muted">- <?= $tweet['data'] ?></span></small></p>
-						<p><?= $tweet['tweet'] ?></p>
-
+						<p><strong><?=$tweet['nome']?></strong> <small><span class="text text-muted">- <?=$tweet['data']?></span></small></p>
+						<p><?=$tweet['tweet']?></p>
 						<br />
 						<form>
 							<div class="col d-flex justify-content-end">
@@ -83,7 +82,8 @@
 						</form>
 					</div>
 				</div>
-			<?php } ?>
+		<?php } ?>
+
 
 		</div>
 

@@ -1,48 +1,56 @@
 <?php
-    namespace App\Controllers;
 
-    use App\Models\Usuario;
-    use MF\Controller\Action;
-    use MF\Model\Container;
+namespace App\Controllers;
 
-    class AppController extends Action {
-        public function timeline() {
-            session_start();
+//os recursos do miniframework
+use MF\Controller\Action;
+use MF\Model\Container;
 
-            $this->validaAutenticacao();
+class AppController extends Action {
 
-            
-                $tweet = Container::getModel('Tweet');
-                $tweet->__set('id_usuario', $_SESSION['id']);
-                $tweets = $tweet->getAll();
 
-                $this->view->tweets = $tweets;
+	public function timeline() {
 
-                $this->render('timeline');                   
-        }
+		$this->validaAutenticacao();
+			
+		//recuperação dos tweets
+		$tweet = Container::getModel('Tweet');
 
-        public function tweet() {
-            session_start();
+		$tweet->__set('id_usuario', $_SESSION['id']);
 
-            if($_SESSION['id'] != '' && $_SESSION['nome'] != '') {
-                $tweet = Container::getModel('Tweet');
+		$tweets = $tweet->getAll();
 
-                $tweet->__set('tweet', $_POST['tweet']);
-                $tweet->__set('id_usuario', $_SESSION['id']);
+		$this->view->tweets = $tweets;
 
-                $tweet->salvar();
+		$this->render('timeline');
+		
+		
+	}
 
-                header('Location: /timeline');
-            } else {
-                header('Location: /?login=erro');
-            }  
-        }
+	public function tweet() {
 
-        public function validaAutenticacao() {
-            session_start();
-            if(!isset($_SESSION['id']) || $_SESSION['id'] != '' || !isset($_SESSION['nome']) || $_SESSION['id'] != '') {
-                header('Location: /?login=erro');
-            }
-        }
-    }
+		$this->validaAutenticacao();
+
+		$tweet = Container::getModel('Tweet');
+
+		$tweet->__set('tweet', $_POST['tweet']);
+		$tweet->__set('id_usuario', $_SESSION['id']);
+
+		$tweet->salvar();
+
+		header('Location: /timeline');
+		
+	}
+
+	public function validaAutenticacao() {
+
+		session_start();
+
+		if(!isset($_SESSION['id']) || $_SESSION['id'] == '' || !isset($_SESSION['nome']) || $_SESSION['nome'] == '') {
+			header('Location: /?login=erro');
+		}	
+
+	}
+}
+
 ?>
